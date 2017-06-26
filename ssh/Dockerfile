@@ -9,6 +9,7 @@ RUN apk --no-cache add \
  && ssh-keygen -N "" -t ed25519 -f /etc/ssh/ssh_host_ed25519_key
 
 COPY ./sshd_config /etc/ssh/sshd_config
+COPY ./entrypoint.sh /entrypoint.sh
 
 EXPOSE 22
 
@@ -20,4 +21,4 @@ RUN adduser -S Heimdall \
 
 VOLUME ["/home/Heimdall/.ssh/authorized_keys"]
 
-ENTRYPOINT [ "/usr/sbin/sshd", "-D" ]
+ENTRYPOINT [ "/entrypoint.sh" ]
