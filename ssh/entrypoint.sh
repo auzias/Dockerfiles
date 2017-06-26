@@ -7,4 +7,4 @@ for f in /etc/ssh/*pub; do
 done
 
 # Runs the daemon
-/usr/sbin/sshd -D
+/usr/sbin/sshd -D -e -f /etc/ssh/sshd_config
