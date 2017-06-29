@@ -9,7 +9,7 @@ RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/reposito
  && ssh-keygen -N "" -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key \
  && ssh-keygen -N "" -t ed25519 -f /etc/ssh/ssh_host_ed25519_key
 
- ENV HOME /home/Heimdall
+ENV HOME /home/Heimdall
 
 RUN adduser -S Heimdall \
  && mkdir /home/Heimdall/.ssh \

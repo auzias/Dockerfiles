@@ -15,7 +15,7 @@ Heimdall is a dockerized `sshd`. It requires several arguments:
 docker run -d \
 	-v /home/Heimdall/.ssh/root.w.com.pub:/home/Heimdall/.ssh/authorized_keys:ro \
 	--name=Heimdall \
-	-e PUID=1000 \
+	-e UID=1000 \
 	-p 2323:22 \
 	auzias/sshd
 ```
