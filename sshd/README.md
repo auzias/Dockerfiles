@@ -1,6 +1,6 @@
 ## What use
 
-This service is not use to access to a shell but rather to be used as proxy-jump or tsocks. This is why the default shell of Heimdall is `/bin/false`.
+This service is not use to access to a shell but rather to be used as proxy-jump or tsocks. This is why the default shell of Heimdall is `/bin/false`. Because of this, the user cannot use `sshfs`, nor `scp`.
 At its start, the service display both ED25519 and RSA fingerprints (in both SHA256 and MD5), OpenSSH and OpenSSL versions. Output `stderr` is also displayed by default. `docker logs Heimdall` will display it.
 
 
