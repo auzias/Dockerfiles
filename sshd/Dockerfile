@@ -17,7 +17,7 @@ RUN adduser -S Heimdall \
  # Force no shell
  && chsh --shell /bin/false Heimdall \
  # Set a random password, so the user is not locked and thus can login with ssh
- #&& echo "Heimdall:$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-256};)" \
+ && echo "Heimdall:$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-256};)" \
  |chpasswd \
  && rm /etc/motd
 
