@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Maël Auzias <docker@mael.auzias.net>
 
 RUN apt-get update && apt-get install -y \
