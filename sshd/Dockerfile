@@ -1,24 +1,20 @@
 FROM alpine:latest
 MAINTAINER Maël Auzias <docker@mael.auzias.net>
 
-RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories \
- && apk --no-cache add \
+RUN apk --no-cache add \
     openssh shadow \
 # Force bit-length of keys (keys are required to run sshd)
-# These lines can be shorten by `ssh-keygen -A` that keeps default values
  && ssh-keygen -N "" -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key \
- && ssh-keygen -N "" -t ed25519 -f /etc/ssh/ssh_host_ed25519_key
+ && ssh-keygen -N "" -t ed25519 -b 4096 -f /etc/ssh/ssh_host_ed25519_key \
+ && apk del .build-deps
 
-ENV HOME /home/Heimdall
+ENV USER Heimdall
+ENV HOME /home/$USER
 
-RUN adduser -S Heimdall \
+RUN adduser -S -D -s /bin/false -h $HOME $USER \
  && mkdir /home/Heimdall/.ssh \
- && chown -R Heimdall $HOME \
- # Force no shell
- && chsh --shell /bin/false Heimdall \
- # Set a random password, so the user is not locked and thus can login with ssh
- && echo "Heimdall:$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-256};)" \
- |chpasswd \
+ && chown -R $USER $HOME \
+ && usermod -p "" $USER \
  && rm /etc/motd
 
 COPY ./sshd_config /etc/ssh/sshd_config
