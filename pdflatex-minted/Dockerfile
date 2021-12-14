@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Adding Pygments for package minted
-RUN curl -O https://bootstrap.pypa.io/get-pip.py \
+RUN curl -O https://bootstrap.pypa.io/pip/3.5/get-pip.py \
     && python3 get-pip.py \
     && rm get-pip.py \
     && pip install Pygments \
